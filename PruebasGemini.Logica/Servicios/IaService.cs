@@ -12,7 +12,7 @@ namespace PruebasGemini.Logica.Servicios
         private readonly HttpClient _httpClient;
         private readonly ILogger<IaService> _logger;
         private readonly string _apiBaseUrl = "https://generativelanguage.googleapis.com"; // URL base de la API
-        private readonly string _apiKey = ""; // Coloca aquí tu API Key
+        private readonly string _apiKey = ""; // API Key
 
         public IaService(HttpClient httpClient, ILogger<IaService> logger)
         {
@@ -48,7 +48,7 @@ namespace PruebasGemini.Logica.Servicios
                 var requestContent = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
 
                 // Agrega el endpoint específico al final de la URL base
-                var requestUrl = $"{_apiBaseUrl}/v1/models/gemini-1.5-pro:generateContent?key={_apiKey}"; // Ajusta esto según el nombre de tu modelo
+                var requestUrl = $"{_apiBaseUrl}/v1/models/gemini-1.5-pro:generateContent?key={_apiKey}"; 
 
                 // Realiza la solicitud HTTP POST
                 var response = await _httpClient.PostAsync(requestUrl, requestContent);
