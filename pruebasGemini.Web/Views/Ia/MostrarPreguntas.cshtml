@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "MostrarPreguntas";
+}
+
+<h2>Preguntas Generadas</h2>
+
+@if (Model != null && Model.Length > 0)
+{
+    <form method="post" action="/Ia/CorregirRespuestas">
+        <ul>
+            @for (var i = 0; i < Model.Length; i++)
+            {
+                <li>
+                    @Model[i]
+                    <br />
+                    <input type="text" name="Respuestas[@i]" />
+                </li>
+            }
+        </ul>
+        <button type="submit">Corregir respuestas</button>
+    </form>
+}
+else
+{
+    <p>No se pudieron generar preguntas.</p>
+}

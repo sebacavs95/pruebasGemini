@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pruebasGemini.Web", "pruebasGemini.Web\pruebasGemini.Web.csproj", "{15032B04-6E8A-4228-B111-E38CA1489FE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebasGemini.Logica", "PruebasGemini.Logica\PruebasGemini.Logica.csproj", "{42B1C9A3-FE6C-48FF-BFA8-F2DBAFB41AAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15032B04-6E8A-4228-B111-E38CA1489FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15032B04-6E8A-4228-B111-E38CA1489FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15032B04-6E8A-4228-B111-E38CA1489FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15032B04-6E8A-4228-B111-E38CA1489FE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B1C9A3-FE6C-48FF-BFA8-F2DBAFB41AAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B1C9A3-FE6C-48FF-BFA8-F2DBAFB41AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B1C9A3-FE6C-48FF-BFA8-F2DBAFB41AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B1C9A3-FE6C-48FF-BFA8-F2DBAFB41AAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {682A3B1D-8FEB-4163-A096-947C51A205F7}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "VistaPreguntas";
+}
+
+<h2>Generar Preguntas</h2>
+
+<form asp-action="GenerateQuestions" method="post">
+    <label for="resumen">Resumen:</label>
+    <textarea id="resumen" name="resumen" rows="4" cols="50"></textarea>
+    <br />
+    <button type="submit">Generar Preguntas</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <h3>Error:</h3>
+    <p style="color:red">@ViewBag.Error</p>
+}
