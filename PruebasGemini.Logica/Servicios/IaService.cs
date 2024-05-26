@@ -103,6 +103,68 @@ namespace PruebasGemini.Logica.Servicios
                 return null;
             }
         }
-    }
+
+        // Método para obtener el feedback
+        public async Task<string> GetFeedback(string[] preguntas, string[] respuestas)
+        {
+            try
+            {
+                // Construye el texto de la solicitud
+                var textoConRespuestas = "Quiero que me hagas una corrección de las siguientes preguntas y respuestas:\n\n";
+                for (int i = 0; i < preguntas.Length; i++)
+                {
+                    textoConRespuestas += $"{preguntas[i]}\nRespuesta: {respuestas[i]}\n\n";
+                }
+
+                // Construye la solicitud con el texto proporcionado
+                var requestBody = new
+                {
+                    contents = new[]
+                    {
+                    new
+                    {
+                        parts = new[]
+                        {
+                            new
+                            {
+                                text = textoConRespuestas
+                            }
+                        }
+                    }
+                }
+                };
+
+                var requestContent = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+
+                // Agrega el endpoint específico al final de la URL base
+                var requestUrl = $"{_apiBaseUrl}/v1/models/gemini-1.5-pro:generateContent?key={_apiKey}";
+
+                // Realiza la solicitud HTTP POST
+                var response = await _httpClient.PostAsync(requestUrl, requestContent);
+
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+
+                // Verificamos si la estructura de la respuesta es la esperada
+                if (responseData != null && responseData["candidates"] != null && responseData["candidates"][0] != null
+                    && responseData["candidates"][0]["content"] != null && responseData["candidates"][0]["content"]["parts"] != null
+                    && responseData["candidates"][0]["content"]["parts"][0] != null && responseData["candidates"][0]["content"]["parts"][0]["text"] != null)
+                {
+                    // Obtenemos el feedback
+                    return responseData["candidates"][0]["content"]["parts"][0]["text"].ToString();
+                }
+                else
+                {
+                    _logger.LogError("La estructura de la respuesta de la API no es la esperada.");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Excepción al llamar a la API: {ex.Message}");
+                return null;
+            }
+        }
+        }
 
 }

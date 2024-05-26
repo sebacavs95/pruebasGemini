@@ -52,8 +52,35 @@ namespace pruebasGemini.Web.Controllers
 
 
 
+        [HttpPost]
+        public async Task<IActionResult> CorregirRespuestas(string[] preguntas, string[] respuestas)
+        {
+            try
+            {
+                var feedback = await _iaService.GetFeedback(preguntas, respuestas);
 
+                if (!string.IsNullOrEmpty(feedback))
+                {
+                    ViewBag.Feedback = feedback;
+                    return View("MostrarFeedback");
+                }
+                else
+                {
+                    ViewBag.Error = "No se pudo obtener el feedback.";
+                    return View("MostrarPreguntas", preguntas);
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error al obtener el feedback: " + ex.Message;
+                return View("MostrarPreguntas", preguntas);
+            }
+        }
 
+        public IActionResult MostrarFeedback()
+        {
+            return View();
+        }
     }
 
 }

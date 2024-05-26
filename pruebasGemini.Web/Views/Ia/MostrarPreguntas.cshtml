@@ -13,7 +13,8 @@
                 <li>
                     @Model[i]
                     <br />
-                    <input type="text" name="Respuestas[@i]" />
+                    <input type="hidden" name="preguntas[@i]" value="@Model[i]" />
+                    <input type="text" name="respuestas[@i]" />
                 </li>
             }
         </ul>
@@ -23,4 +24,10 @@
 else
 {
     <p>No se pudieron generar preguntas.</p>
+}
+
+@if (ViewBag.Error != null)
+{
+    <h3>Error:</h3>
+    <p style="color:red">@ViewBag.Error</p>
 }
