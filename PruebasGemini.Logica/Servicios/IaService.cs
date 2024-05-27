@@ -25,6 +25,8 @@ namespace PruebasGemini.Logica.Servicios
             try
             {
                 // Texto fijo para solicitar la generación de preguntas
+                _logger.LogWarning("Method Dont Invoked");
+
                 string textoConPrompt = $"Generame 10 preguntas de este texto: {texto}";
 
                 // Construye la solicitud con el texto proporcionado y otros parámetros necesarios
@@ -87,20 +89,20 @@ namespace PruebasGemini.Logica.Servicios
                     else
                     {
                         _logger.LogError("No se encontraron preguntas en el texto.");
-                        return null;
+                        throw new Exception("No se encontraron preguntas en el texto.");
                     }
                 }
                 else
                 {
                     _logger.LogError("La estructura de la respuesta de la API no es la esperada.");
-                    return null;
+                    throw new Exception("La estructura de la respuesta de la API no es la esperada.");
                 }
                
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Excepción al llamar a la API: {ex.Message}");
-                return null;
+                throw ex;
             }
         }
 
